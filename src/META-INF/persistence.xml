@@ -3,12 +3,17 @@
   <persistence-unit name="EveHubPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>evehub.it.lessons.eve.db.entities.SistemaSolare</class>
+    <class>evehub.it.lessons.eve.db.entities.Base</class>
+    <class>evehub.it.lessons.eve.db.entities.HubCommerciale</class>
+    <class>evehub.it.lessons.eve.db.entities.Oggetto</class>
+    <class>evehub.it.lessons.eve.db.entities.OggettoInVendita</class>
+    <class>evehub.it.lessons.eve.db.entities.Personaggio</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/evehubdb?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="sommocapo"/>
-      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>
 </persistence>
