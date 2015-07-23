@@ -5,17 +5,35 @@
  */
 package evehub.it.lessons.eve.gui.sistemi;
 
+import evehub.it.lessons.eve.db.controllers.SistemaSolareJpaController;
+import evehub.it.lessons.eve.db.entities.SistemaSolare;
+import evehub.it.lessons.eve.gui.sistemi.mr.SolarSystemListModel;
+import evehub.it.lessons.eve.gui.sistemi.mr.SolarSystemListRenderer;
+import java.util.List;
+import javax.persistence.Persistence;
+
 /**
  *
  * @author Luca Coraci <luca.coraci@istc.cnr.it>
  */
 public class MainSolarSystemPanel extends javax.swing.JPanel {
 
+    private SolarSystemListModel model = new SolarSystemListModel();
+    private SolarSystemListRenderer renderer = new SolarSystemListRenderer();
     /**
      * Creates new form MainSolarSystemPanel
      */
     public MainSolarSystemPanel() {
         initComponents();
+        this.jList1.setModel(model);
+        this.jList1.setCellRenderer(renderer);
+        SistemaSolareJpaController controller = new SistemaSolareJpaController(Persistence.createEntityManagerFactory("EveHubPU"));
+        List<SistemaSolare> sistemi = controller.findSistemaSolareEntities();
+        System.out.println("sistemi = "+sistemi.size());
+        for (SistemaSolare sistema : sistemi) {
+            System.out.println("adding sistema: "+sistema.getNome());
+            model.addElement(sistema);
+        }
     }
 
     /**
