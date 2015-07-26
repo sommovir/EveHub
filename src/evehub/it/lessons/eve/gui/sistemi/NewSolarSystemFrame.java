@@ -7,6 +7,7 @@ package evehub.it.lessons.eve.gui.sistemi;
 
 import evehub.it.lessons.eve.db.controllers.SistemaSolareJpaController;
 import evehub.it.lessons.eve.db.entities.SistemaSolare;
+import evehub.it.lessons.eve.logic.events.DBEventDispatcher;
 import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 
@@ -89,6 +90,7 @@ public class NewSolarSystemFrame extends javax.swing.JFrame {
         
         SistemaSolareJpaController controller = new SistemaSolareJpaController(Persistence.createEntityManagerFactory("EveHubPU"));
         controller.create(sistemSolare);
+        DBEventDispatcher.getInstance().informEntityCreated(sistemSolare);
         this.setVisible(false);
         JOptionPane.showMessageDialog(null, "Sistema solare "+sistemSolare.getNome()+" è stato salvato!");
         this.dispose();
